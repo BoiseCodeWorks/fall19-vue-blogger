@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="container-fluid">
-      <div class="row p-3 bg-light shadow mb-2 justify-content-center text-right">
-        <div class="col-12">
+      <div class="row p-3 bg-light shadow mb-2 text-right">
+        <div class="col-12" v-if="user">
           <p class="m-0">Welcome {{user.name}}</p>
         </div>
         <div id="nav">
