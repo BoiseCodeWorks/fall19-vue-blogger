@@ -1,5 +1,5 @@
 <template>
-  <div class="blog">
+  <div class="blog" @click="viewBlog()">
     <h1>{{blogProp.title}} - {{blogProp.author}}</h1>
 
     <p>{{blogProp.summary}}</p>
@@ -23,7 +23,14 @@ export default {
     return {};
   },
   computed: {},
-  methods: {},
+  methods: {
+    viewBlog() {
+      this.$router.push({
+        name: "blog",
+        params: { blogId: this.blogProp._id }
+      });
+    }
+  },
   components: {}
 };
 </script>
