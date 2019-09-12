@@ -68,6 +68,13 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
+    },
+    async getBlogById({ commit, dispatch }, payload) {
+      try {
+        let res = await api.get(`blogs/${payload}`)
+      } catch (error) {
+        console.error(error)
+      }
     }
 
 
