@@ -2,8 +2,12 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import router from './router'
 import AuthService from './AuthService'
+import axios from 'axios'
 
 Vue.use(Vuex)
+let api = axios.create({
+  baseURL: '//bcw-sandbox.herokuapp.com/api/'
+})
 
 function getBaseState() {
   return {
@@ -51,6 +55,18 @@ export default new Vuex.Store({
         console.warn(e.message)
       }
     },
+    //#endregion
+    //#region --BLOG STUFF --
+    async getBlogz({ commit, dispatch }) {
+      try {
+        let res = await api.get('blogs')
+      } catch (error) {
+
+      }
+    }
+
+
+
     //#endregion
 
   }
