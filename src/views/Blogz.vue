@@ -4,13 +4,14 @@
       <h1>Blogz</h1>
     </div>
     <div class="row">
-      <div class="col"></div>
+      <Blog v-for="blog in blogz" :key="blog._id" :blogProp="blog" />
     </div>
   </div>
 </template>
 
 
 <script>
+import Blog from "../components/Blog.vue";
 export default {
   name: "blogz",
   data() {
@@ -19,9 +20,15 @@ export default {
   mounted() {
     this.$store.dispatch("getBlogz");
   },
-  computed: {},
+  computed: {
+    blogz() {
+      return this.$store.state.blogz;
+    }
+  },
   methods: {},
-  components: {}
+  components: {
+    Blog
+  }
 };
 </script>
 
