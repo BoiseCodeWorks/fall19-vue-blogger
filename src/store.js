@@ -6,12 +6,13 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 let api = axios.create({
-  baseURL: '//bcw-sandbox.herokuapp.com/api/'
+  baseURL: '//localhost:3000/api'
 })
 
 function getBaseState() {
   return {
-    user: {}
+    user: {},
+    blogz: []
   }
 }
 
@@ -23,6 +24,9 @@ export default new Vuex.Store({
     },
     resetState(state) {
       state = getBaseState()
+    },
+    setBlogz(state, payload) {
+      state.blogz = payload
     }
   },
   actions: {
@@ -60,8 +64,9 @@ export default new Vuex.Store({
     async getBlogz({ commit, dispatch }) {
       try {
         let res = await api.get('blogs')
+        commit('setBlogz', res.data)
       } catch (error) {
-
+        console.error(error)
       }
     }
 
