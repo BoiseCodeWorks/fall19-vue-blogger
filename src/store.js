@@ -12,7 +12,8 @@ let api = axios.create({
 function getBaseState() {
   return {
     user: {},
-    blogz: []
+    blogz: [],
+    activeBlog: {}
   }
 }
 
@@ -27,6 +28,9 @@ export default new Vuex.Store({
     },
     setBlogz(state, payload) {
       state.blogz = payload
+    },
+    setActiveBlog(state, payload) {
+      state.activeBlog = payload
     }
   },
   actions: {
@@ -72,6 +76,7 @@ export default new Vuex.Store({
     async getBlogById({ commit, dispatch }, payload) {
       try {
         let res = await api.get(`blogs/${payload}`)
+        commit('setActiveBlog', res.data)
       } catch (error) {
         console.error(error)
       }
